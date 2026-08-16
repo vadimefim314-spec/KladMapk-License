@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: kladmapk-license
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_ADMIN_ID
+        value: "1496817191"
+      - key: BASE_URL
+        sync: false
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: LICENSE_DAYS
+        value: "30"
+      - key: PYTHON_VERSION
+        value: "3.13.5"
